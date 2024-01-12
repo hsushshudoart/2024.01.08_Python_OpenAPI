@@ -11,7 +11,7 @@ ledStatus = False
 """
 while True:
     var_ticks = time.ticks_ms()
-    if var_ticks - start_ticks >= 1000: #1秒
+    if var_ticks - start_ticks >= 1000: #1000 ->> 1秒
         start_ticks = time.ticks_ms()
         ledStatus = not ledStatus
         led25.value(ledStatus)
