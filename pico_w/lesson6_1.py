@@ -1,1 +1,4 @@
-input("請輸入姓名:")
+import machine
+
+#machine.freq()  # get the current frequency of the CPU
+print(machine.freq(),"MHz")
