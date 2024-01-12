@@ -9,5 +9,6 @@ led25 = Pin("LED", Pin.OUT)
 def second1(t):
     print("過1秒")
     led25.toggle()
+    #led25.value(1)
 
 tim1 = Timer(period=1000, mode=Timer.PERIODIC, callback=second1)
