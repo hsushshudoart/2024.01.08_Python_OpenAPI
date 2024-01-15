@@ -13,7 +13,7 @@ def second1(t):
     # Typically, Vbe = 0.706V at 27 degrees C, with a slope of -1.721mV (0.001721) per degree. 
     celsius = 27 - (reading_v-0.706) / 0.001721
     print(celsius)
-    if celsius >= 28:
+    if celsius >= 23:
         alert()
     
 tim1 = Timer()

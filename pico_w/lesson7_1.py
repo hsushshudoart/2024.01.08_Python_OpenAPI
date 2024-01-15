@@ -13,7 +13,7 @@ def second1(t):
     print("過1秒")
     
     i = i + 1
-    if (i>=3):
+    if (i>=6):
         t.deinit()
     
 tim1 = Timer()
