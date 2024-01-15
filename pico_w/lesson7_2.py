@@ -1,5 +1,6 @@
-from machine import ADC,Pin,Timer
 """
+from machine import ADC,Pin,Timer
+
 adc = ADC(4)     # create ADC object on ADC pin,最後一個,溫度
 def second1(t):
     print(adc.read_u16()) 
