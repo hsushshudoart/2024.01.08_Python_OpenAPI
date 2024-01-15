@@ -24,21 +24,36 @@ tim1.init(period=1000, callback=second1)
 from tools import connect,reconnect
 from machine import ADC,Pin,Timer
 import time
+import urequests
 
 #webhooks
 #https://hook.eu2.make.com/t4tupm74kryt8aealmit7qs27uu49q9f?date=2024-01-15-14:25:00&temperature=25.456&from=%E5%AD%B8%E9%99%A2%E9%A4%8A%E9%9B%9E%E5%A0%B4
 
+connect()
 adc = ADC(4)     # create ADC object on ADC pin,最後一個,溫度
 conversion_factor = 3.3/65535
 
 start_time = 0
-duration = 5
+duration = 60
 
-def alert():
+def alert(temp):
     global start_time
-    if time.ticks_diff(time.ticks_ms(), start_time) >= duration * 1000:        
-        print("要爆炸了")
-        print("傳送訊息")
+    if time.ticks_diff(time.ticks_ms(), start_time) >= duration * 1000:
+        print("傳送訊息給make")
+        rtc = RTC()
+        date_tuple = rtc.datetime()
+        date_str = f'{date_tuple[0]}-{date_tuple[1]}-{date_tuple[2]} {date_tuple[4]}:{date_tuple[5]}:{date_tuple[6]}'
+        url_str = f'https://hook.us1.make.com/t4tupm74kryt8aealmit7qs27uu49q9f?date={date_str}&temperature={temp}&from=學院養雞場'
+        try:
+            response = urequests.get(url_str)            
+        except:
+            print("ap出現問題")
+            reconnect()
+        else:
+            if response.status_code == 200:            
+                print("傳送訊息成功")
+            else:
+                print("傳送失敗(make服務出問題)")
         start_time = time.ticks_ms()
 
 def second1(t):
