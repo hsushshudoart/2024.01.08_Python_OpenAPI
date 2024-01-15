@@ -22,7 +22,7 @@ tim1.init(period=1000, callback=second1)
 """
 
 from tools import connect,reconnect
-from machine import ADC,Pin,Timer
+from machine import ADC,Pin,Timer,RTC
 import time
 import urequests
 
@@ -37,13 +37,14 @@ start_time = 0
 duration = 60
 
 def alert(temp):
+    
     global start_time
     if time.ticks_diff(time.ticks_ms(), start_time) >= duration * 1000:
         print("傳送訊息給make")
         rtc = RTC()
         date_tuple = rtc.datetime()
         date_str = f'{date_tuple[0]}-{date_tuple[1]}-{date_tuple[2]} {date_tuple[4]}:{date_tuple[5]}:{date_tuple[6]}'
-        url_str = f'https://hook.us1.make.com/t4tupm74kryt8aealmit7qs27uu49q9f?date={date_str}&temperature={temp}&from=學院養雞場'
+        url_str = f'https://hook.eu2.make.com/t4tupm74kryt8aealmit7qs27uu49q9f?date={date_str}&temperature={temp}&from=學院養魚場'
         try:
             response = urequests.get(url_str)            
         except:
@@ -62,8 +63,8 @@ def second1(t):
     # Typically, Vbe = 0.706V at 27 degrees C, with a slope of -1.721mV (0.001721) per degree. 
     celsius = 27 - (reading_v-0.706) / 0.001721
     print(celsius)
-    if celsius >= 23:
-        alert()
+    if celsius >= 20:
+        alert(celsius)
         
     
 tim1 = Timer()
