@@ -25,6 +25,9 @@ from tools import connect,reconnect
 from machine import ADC,Pin,Timer
 import time
 
+#webhooks
+#https://hook.eu2.make.com/t4tupm74kryt8aealmit7qs27uu49q9f?date=2024-01-15-14:25:00&temperature=25.456&from=%E5%AD%B8%E9%99%A2%E9%A4%8A%E9%9B%9E%E5%A0%B4
+
 adc = ADC(4)     # create ADC object on ADC pin,最後一個,溫度
 conversion_factor = 3.3/65535
 
