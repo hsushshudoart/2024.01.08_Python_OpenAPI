@@ -9,8 +9,9 @@ led25 = Pin("LED", Pin.OUT)
 i = 0
 def second1(t):
     global i
-    print("過1秒")
+    
     led25.toggle()
+    print("過1秒")
     
     i = i + 1
     if (i>=3):
