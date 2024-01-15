@@ -9,7 +9,6 @@ led25 = Pin("LED", Pin.OUT)
 i = 0
 def second1(t):
     global i
-    
     led25.toggle()
     print("過1秒")
     
