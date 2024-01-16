@@ -6,8 +6,8 @@ from machine import WDT
 
 rp2.country('TW') #設定我們的wifi的地區是台灣(可以不設)
 
-ssid = 'HahahaYA'
-password = 'mnb255yuoi2'
+ssid = 'xxxxxx'        # wifi熱點名稱
+password = 'xxxxx'     # wifi熱點 密碼
 
 wlan = network.WLAN(network.STA_IF)
 wlan.active(True)
