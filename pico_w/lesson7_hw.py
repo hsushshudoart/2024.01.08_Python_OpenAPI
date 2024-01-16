@@ -51,6 +51,7 @@ def second1(t):
     #
     #
     kiloohm =  reading_v1 * 200000  / 65535   #ohm歐姆
+    kiloohm -= 0.06
     print(kiloohm)
     
     if celsius >= 20 or kiloohm > 5:
