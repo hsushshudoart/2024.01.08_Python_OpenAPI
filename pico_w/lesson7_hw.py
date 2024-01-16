@@ -1,4 +1,4 @@
-# 2024.01.16_家裡陽台_日期,溫度,電阻值,場域 ->> 偵測顯示 & 傳送alert訊息到LINE
+# 2024.01.16_陽台_日期,溫度,電阻值,場域 ->> 偵測顯示 & 傳送alert訊息到LINE
 
 from tools import connect,reconnect
 from machine import ADC,Pin,Timer,RTC
