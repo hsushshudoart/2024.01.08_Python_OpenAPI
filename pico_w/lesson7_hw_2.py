@@ -1,4 +1,5 @@
 # 2024.01.16_陽台_日期,溫度,電阻值,場域 ->> 偵測顯示 & 傳送alert訊息到LINE
+# 加上 蜂鳴器, 用VR控制, VR > 5Kohm, Pin27(GP21)低電位,叫 ->> 高電位,停
 
 from tools import connect,reconnect
 from machine import ADC,Pin,Timer,RTC
@@ -13,6 +14,11 @@ adc = ADC(4)     # create ADC object on ADC pin,最後一個,溫度
 conversion_factor = 3.3/65535
 
 adc1 = ADC(2)     # create ADC object on ADC pin,第3個,VR可變電阻
+
+p27 = Pin(21, Pin.OUT)    # create output pin on GPIO 21
+p27.on()                 # set pin to "on" (high) level
+#p27.off()                # set pin to "off" (low) level
+#p27.value(1)             # set pin to on/high
 
 global kiloohm
 
@@ -60,6 +66,9 @@ def second1(t):
     
     if celsius >= 17 or kiloohm > 5:
         alert(celsius,kiloohm)
+        p27.off()                        # set pin to "off" (low) level,低電位,叫
+    else:
+        p27.on()
         
     
 tim1 = Timer()
