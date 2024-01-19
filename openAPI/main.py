@@ -16,7 +16,7 @@ def read_root():
     counter = redis_conn.incr('test:increment', 1)
     return {'Counter': counter}
 
-@app.get("/counter/{c}")
+@app.get("/counter/{c}")       #c ->> 路徑參數
 def counter(c:int):
     counter = redis_conn.incr('test:increment', c)
     return {'Counter': counter}
