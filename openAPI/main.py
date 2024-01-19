@@ -10,7 +10,7 @@ redis_conn = redis.Redis.from_url(os.environ.get('REDIS_HOST_PASSWORD'))
 
 app = FastAPI()
 
-
+#@app.get("/") ->> 接收值的網上通道
 @app.get("/")
 def read_root():
     counter = redis_conn.incr('test:increment', 1)
