@@ -13,8 +13,19 @@ app = FastAPI()
 @app.get("/")
 def read_root():
     return {"Hello": "World"}
-
+"""
 @app.get("/items/{item_id}")
 async def get_item(item_id):
     print(f"使用者輸入了:{item_id}")        #f'字串' ->> 字串差補
     return {"item_id":item_id}
+"""
+@app.get("/items/{item_id}")
+async def get_item(item_id:int):            #路徑參數:type ->> type hint
+    print(f"使用者輸入了:{item_id}")
+    return {"item_id":item_id}
+
+@app.get("/items/{date}/{celsius}")         #2個路徑參數
+async def get_item(date:str,celsius:float):
+    print(f"日期:{date}")
+    print(f"溫度:{celsius}")
+    return {"日期":date,"攝氏溫度":celsius}
