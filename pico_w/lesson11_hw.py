@@ -7,19 +7,20 @@ import urequests
 #red_led = Pin(15, mode=Pin.OUT)
 #btn = Pin(14, mode=Pin.PULL_DOWN)		#PULL_DOWN 下拉電阻
 red_led = Pin(15, Pin.OUT)
-btn = Pin(14, Pin.IN , Pin.PULL_DOWN)
+#btn = Pin(14, Pin.IN , Pin.PULL_DOWN)
+btn = Pin(14, Pin.IN , Pin.PULL_UP)
 is_press = False						#按鈕 預設為 沒有按下，數值為0
 
 connect()
 
 while 1:
-    if btn.value() == True:
+    if btn.value() == False:
         #按鈕按下
         is_press = True
         red_led.value(1)
     else:
         #放開按鈕
-        #red_led.value(0)  #在這裡,燈會馬上反應,但是雲端伺服器不確定完成與否
+        #red_led.value(0) #在這裡,燈會馬上反應,但是雲端伺服器不確定完成與否
         if is_press == True:
             print('release')
             is_press = False
@@ -38,3 +39,4 @@ while 1:
                 response.close()
             
         red_led.value(0)
+
