@@ -12,6 +12,11 @@ is_press = False						#按鈕 預設為 沒有按下，數值為0
 
 #connect()
 
+def getCurrentTime():
+    times_tuple = time.localtime()
+    currentTime = f'{times_tuple[0]}-{times_tuple[1]}-{times_tuple[2]} {times_tuple[3]}:{times_tuple[4]}:{times_tuple[5]}'
+    return currentTime
+
 while True:
     #按鈕按下
     if btn.value() == True:	#== True可省略
@@ -28,9 +33,9 @@ while True:
         if btn.value() == False:
             if is_press == True:
                 print('release')
-                times_tuple = time.localtime()
-                currentTime = f'{times_tuple[0]}-{times_tuple[1]}-{times_tuple[2]} {times_tuple[3]}:{times_tuple[4]}:{times_tuple[5]}'
-                print(currentTime)
+                #times_tuple = time.localtime()
+                #currentTime = f'{times_tuple[0]}-{times_tuple[1]}-{times_tuple[2]} {times_tuple[3]}:{times_tuple[4]}:{times_tuple[5]}'
+                print(getCurrentTime())
                 is_press = False
                 '''
                 url_str = 'https://openapi-h8a3.onrender.com/pico_w/2024-01-22 16:02:10?address=Chicken&celsius=15.38'      #網址不能有中文字
