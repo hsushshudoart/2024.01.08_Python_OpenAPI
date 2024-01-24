@@ -37,9 +37,20 @@ fake_items_db = [{"item_name": "Foo"}, {"item_name": "Bar"}, {"item_name": "Baz"
 async def read_item(skip: int = 0, limit: int = 10):
     return fake_items_db[skip : skip + limit]
 
+
 #測試 ->> 給pico_w用的
 @app.get("/pico_w/{date}")
-async def read_item(date:str ,address:str,celsius:float=0.0):
+async def read_item(date:str ,address:str,celsius:float,light:float):       #celsius:float ->>沒有給預設值,在執行的時候一定要有這個值才可以跑
+    print(f"日期:{date}")
+    print(f"位置:{address}")
+    print(f"攝氏:{celsius}")
+    print(f"亮度:{light}")
+    return {"狀態":"儲存成功"}
+
+
+#測試 ->> 給pico_w用的
+@app.get("/pico_w/{date}")
+async def read_item(date:str ,address:str,celsius:float=0.0):       #celsius:float=0.0 ->>有給預設值,在執行的時候沒有這個值也可以跑
     print(f"日期:{date}")
     print(f"位置:{address}")
     print(f"攝氏:{celsius}")
