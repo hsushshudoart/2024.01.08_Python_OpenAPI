@@ -10,7 +10,7 @@ red_led = Pin(15, Pin.OUT)
 btn = Pin(14, Pin.IN , Pin.PULL_DOWN)
 is_press = False						#按鈕 預設為 沒有按下，數值為0
 
-#connect()
+connect()
 
 def getCurrentTime():
     times_tuple = time.localtime()
@@ -45,13 +45,17 @@ while True:
         if btn.value() == False:
             if is_press == True:
                 print('release')
-                print('現在時間:', getCurrentTime())
-                print('溫度:', getTemperature())
-                print('亮度:', getLightValue())
-                print('')
+                #print('現在時間:', getCurrentTime())
+                #print('溫度:', getTemperature())
+                #print('亮度:', getLightValue())
+                #print('')
+                currentTime = getCurrentTime()
+                temperature = getTemperature()
+                light = getLightValue()
+                
                 is_press = False
-                '''
-                url_str = 'https://openapi-h8a3.onrender.com/pico_w/2024-01-22 16:02:10?address=Chicken&celsius=15.38'      #網址不能有中文字
+                
+                url_str = f'https://openapi-h8a3.onrender.com/pico_w/{currentTime}?address=Chicken&celsius={temperature}&light={light}'      #網址不能有中文字
                 
                 try:
                     response = urequests.get(url_str)            
@@ -64,6 +68,6 @@ while True:
                     else:
                         print("傳送失敗(server出現錯誤)")
                     response.close()
-                '''
+                
             red_led.value(0)
 
