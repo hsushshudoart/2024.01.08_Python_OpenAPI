@@ -1,4 +1,4 @@
-from machine import Pin
+from machine import Pin, ADC
 import time
 
 from tools import connect,reconnect
@@ -24,6 +24,11 @@ def getTemperature():
     temperature = 27 - (reading - 0.706)/0.001721
     return temperature
 
+def getLightValue():
+    adc_light = ADC(Pin(28))
+    light_value = adc_light.read_u16()
+    return light_value
+
 while True:
     #按鈕按下
     if btn.value() == True:	#== True可省略
@@ -40,8 +45,9 @@ while True:
         if btn.value() == False:
             if is_press == True:
                 print('release')
-                print(getCurrentTime())
-                print(getTemperature())
+                print('現在時間:', getCurrentTime())
+                print('溫度:', getTemperature())
+                print('亮度:', getLightValue())
                 print('')
                 is_press = False
                 '''
