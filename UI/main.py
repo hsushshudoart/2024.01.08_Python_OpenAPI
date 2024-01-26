@@ -6,7 +6,8 @@ from streamlit_autorefresh import st_autorefresh
 url = 'https://openapi-h8a3.onrender.com/pico_w/?count=10'
 
 #自動reload頁面,每10秒一次
-st_autorefresh(interval=10000, limit=100, key="fizzbuzzcounter")
+#st_autorefresh(interval=10000, limit=100, key="fizzbuzzcounter")
+st_autorefresh(interval=10000, key="fizzbuzzcounter")               #limit可以不用寫,可以none
 
 r = requests.get(url=url)
 
